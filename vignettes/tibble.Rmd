@@ -16,34 +16,17 @@ options(crayon.enabled = TRUE)
 options(pillar.bold = TRUE)
 
 knitr::opts_chunk$set(collapse = TRUE, comment = pillar::style_subtle("#>"))
-
-colourise_chunk <- function(type) {
-  function(x, options) {
-    lines <- strsplit(x, "\\n")[[1]]
-    if (type != "output") {
-      lines <- crayon::red(lines)
-    }
-    paste0(
-      '<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">',
-      paste0(
-        sgr_to_html(htmltools::htmlEscape(lines)),
-        collapse = "\n"
-      ),
-      "</code></pre></div>"
-    )
-  }
-}
-
-knitr::knit_hooks$set(
-  output = colourise_chunk("output"),
-  message = colourise_chunk("message"),
-  warning = colourise_chunk("warning"),
-  error = colourise_chunk("error")
+```
+```{r, comment="", results="asis", echo=FALSE}
+styles <- c(
+  getOption('fansi.style'), 
+  "PRE.fansi CODE {background-color: transparent;}",
+  "PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}"
 )
-
-# Fallback if fansi is missing
-sgr_to_html <- identity
-#sgr_to_html <- fansi::sgr_to_html
+hook.on <- c("output", "warning", "error", "message")
+old.hooks <- fansi::set_knit_hooks(
+  knitr::knit_hooks, which=hook.on, style=styles
+)
 ```
 
 Tibbles are a modern take on data frames. They keep the features that have stood the test of time, and drop the features that used to be convenient but are now frustrating (i.e. converting character vectors to factors).

@@ -280,15 +280,6 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">styles &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">getOption</span>(<span class="st">'fansi.style'</span>), </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="st">&quot;PRE.fansi CODE {background-color: transparent;}&quot;</span>,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="st">&quot;PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}&quot;</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">hook.on &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;warning&quot;</span>, <span class="st">&quot;error&quot;</span>, <span class="st">&quot;message&quot;</span>)</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">old.hooks &lt;-<span class="st"> </span>fansi<span class="op">::</span><span class="kw">set_knit_hooks</span>(</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">  knitr<span class="op">::</span>knit_hooks, <span class="dt">which=</span>hook.on, <span class="dt">style=</span>styles</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">)</a></code></pre></div>
 <STYLE type="text/css" scoped>
 PRE.fansi CODE {background-color: transparent;}
 PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
@@ -299,7 +290,7 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 <p><code>tibble()</code> is a nice way to create data frames. It encapsulates best practices for data frames:</p>
 <ul>
 <li><p>It never changes an input’s type (i.e., no more <code>stringsAsFactors = FALSE</code>!).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> letters)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> letters)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 26 x 1</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>    </span><span style="font-weight: bold;">x</span><span>    
 </span><span style="color: #555555;">#&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>
@@ -316,7 +307,7 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># … with 16 more rows</span><span>
 </span></CODE></PRE>
 <p>This makes it easier to use with list-columns:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 3 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>       </span><span style="font-weight: bold;">x</span><span> </span><span style="font-weight: bold;">y</span><span>         
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;list&gt;</span><span>    
@@ -326,14 +317,14 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 </span></CODE></PRE>
 <p>List-columns are most commonly created by <code>do()</code>, but they can be useful to create by hand.</p></li>
 <li><p>It never adjusts the names of variables:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">data.frame</span>(<span class="st">`</span><span class="dt">crazy name</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">data.frame</span>(<span class="st">`</span><span class="dt">crazy name</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;crazy.name&quot;
 </span></CODE></PRE>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">tibble</span>(<span class="st">`</span><span class="dt">crazy name</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">names</span>(<span class="kw">tibble</span>(<span class="st">`</span><span class="dt">crazy name</span><span class="st">`</span> =<span class="st"> </span><span class="dv">1</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;crazy name&quot;
 </span></CODE></PRE></li>
 <li><p>It evaluates its arguments lazily and sequentially:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">y =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">y =</span> x <span class="op">^</span><span class="st"> </span><span class="dv">2</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 5 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>       </span><span style="font-weight: bold;">x</span><span>     </span><span style="font-weight: bold;">y</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
@@ -351,21 +342,21 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 <h2>Coercion</h2>
 <p>To complement <code>tibble()</code>, tibble provides <code>as_tibble()</code> to coerce objects into tibbles. Generally, <code>as_tibble()</code> methods are much simpler than <code>as.data.frame()</code> methods, and in fact, it’s precisely what <code>as.data.frame()</code> does, but it’s similar to <code>do.call(cbind, lapply(x, data.frame))</code> - i.e. it coerces each component to a data frame and then <code>cbinds()</code> them all together.</p>
 <p><code>as_tibble()</code> has been written with an eye for performance:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">l &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">26</span>, <span class="kw">sample</span>(<span class="dv">100</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">names</span>(l) &lt;-<span class="st"> </span>letters</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">timing &lt;-<span class="st"> </span>bench<span class="op">::</span><span class="kw">mark</span>(</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="kw">as_tibble</span>(l),</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">  <span class="kw">as.data.frame</span>(l),</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">  <span class="dt">check =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="kw">as_tibble</span>(<span class="kw">summary</span>(timing, <span class="dt">unit =</span> <span class="st">&quot;us&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">l &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">26</span>, <span class="kw">sample</span>(<span class="dv">100</span>), <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">names</span>(l) &lt;-<span class="st"> </span>letters</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">timing &lt;-<span class="st"> </span>bench<span class="op">::</span><span class="kw">mark</span>(</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="kw">as_tibble</span>(l),</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">  <span class="kw">as.data.frame</span>(l),</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">  <span class="dt">check =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="kw">as_tibble</span>(<span class="kw">summary</span>(timing, <span class="dt">unit =</span> <span class="st">&quot;us&quot;</span>))</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 2 x 14</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="font-weight: bold;">expression</span><span>      </span><span style="font-weight: bold;">min</span><span>     </span><span style="font-weight: bold;">mean</span><span>   </span><span style="font-weight: bold;">median</span><span>    </span><span style="font-weight: bold;">max</span><span> </span><span style="font-weight: bold;">`itr/sec`</span><span> </span><span style="font-weight: bold;">mem_alloc</span><span>  </span><span style="font-weight: bold;">n_gc</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>      </span><span style="color: #555555;font-style: italic;">&lt;bch:tm&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;bch:tm&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;bch:tm&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;bch:&gt;</span><span>     </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;bch:byt&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
-</span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">1</span><span> as_tibble…  505.3µs 675.46µs 585.21µs 1.59ms     </span><span style="text-decoration: underline;">1</span><span>480.    1.55KB     7
-</span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">2</span><span> as.data.f…   1.28ms   1.57ms   1.43ms 3.42ms      637.    4.91KB     7
+</span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">1</span><span> as_tibble… 524.58µs 653.01µs 589.62µs 1.75ms     </span><span style="text-decoration: underline;">1</span><span>531.    1.55KB     8
+</span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">2</span><span> as.data.f…   1.28ms   1.62ms   1.46ms 3.41ms      616.    4.91KB     7
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># … with 6 more variables: </span><span style="color: #555555;font-weight: bold;">n_itr</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">total_time</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;bch:tm&gt;</span><span style="color: #555555;">,
 #&gt;</span><span> #   </span><span style="font-weight: bold;">result</span><span> </span><span style="color: #555555;font-style: italic;">&lt;list&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">memory</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;list&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">time</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;list&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">gc</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;list&gt;</span><span>
 </span></CODE></PRE>
@@ -377,7 +368,7 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 <div id="printing" class="section level3">
 <h3>Printing</h3>
 <p>When you print a tibble, it only shows the first ten rows and all the columns that fit on one screen. It also prints an abbreviated description of the column type, and uses font styles and color for highlighting:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">-5</span><span class="op">:</span><span class="dv">1000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">-5</span><span class="op">:</span><span class="dv">1000</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 1,006 x 1</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>        </span><span style="font-weight: bold;">x</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -402,52 +393,52 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 <div id="subsetting" class="section level3">
 <h3>Subsetting</h3>
 <p>Tibbles are quite strict about subsetting. <code>[</code> always returns another tibble. Contrast this with a data frame: sometimes <code>[</code> returns a data frame and sometimes it just returns a vector:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">class</span>(df1[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">class</span>(df1[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;data.frame&quot;
 </span></CODE></PRE>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">class</span>(df1[, <span class="dv">1</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">class</span>(df1[, <span class="dv">1</span>])</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;integer&quot;
 </span></CODE></PRE>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">class</span>(df2[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">y =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">class</span>(df2[, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
 </span></CODE></PRE>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">class</span>(df2[, <span class="dv">1</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">class</span>(df2[, <span class="dv">1</span>])</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
 </span></CODE></PRE>
 <p>To extract a single column use <code>[[</code> or <code>$</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">class</span>(df2[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">class</span>(df2[[<span class="dv">1</span>]])</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;integer&quot;
 </span></CODE></PRE>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">class</span>(df2<span class="op">$</span>x)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">class</span>(df2<span class="op">$</span>x)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] &quot;integer&quot;
 </span></CODE></PRE>
 <p>Tibbles are also stricter with <code>$</code>. Tibbles never do partial matching, and will throw a warning and return <code>NULL</code> if the column does not exist:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">df<span class="op">$</span>a</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">abc =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">df<span class="op">$</span>a</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] 1
 </span></CODE></PRE>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">abc =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">df2<span class="op">$</span>a</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">df2 &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">abc =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">df2<span class="op">$</span>a</a></code></pre></div>
 <PRE class="fansi fansi-warning"><CODE><span style="color: #555555;">#&gt;</span><span> Warning: Unknown or uninitialised column: 'a'.
 </span></CODE></PRE>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> NULL
 </span></CODE></PRE>
 <p>As of version 1.4.1, tibbles no longer ignore the <code>drop</code> argument:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)[, <span class="st">&quot;a&quot;</span>, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">data.frame</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)[, <span class="st">&quot;a&quot;</span>, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] 1 2 3
 </span></CODE></PRE>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)[, <span class="st">&quot;a&quot;</span>, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)[, <span class="st">&quot;a&quot;</span>, drop =<span class="st"> </span><span class="ot">TRUE</span>]</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> [1] 1 2 3
 </span></CODE></PRE>
 </div>
 <div id="recycling" class="section level3">
 <h3>Recycling</h3>
 <p>When constructing a tibble, only values of length 1 are recycled. The first column with length different to one determines the number of rows in the tibble, conflicts lead to an error. This also extends to tibbles with <em>zero</em> rows, which is sometimes important for programming:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 3 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>       </span><span style="font-weight: bold;">a</span><span>     </span><span style="font-weight: bold;">b</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
@@ -455,7 +446,7 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">2</span><span>     1     2
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">3</span><span>     1     3
 </span></CODE></PRE>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">b =</span> <span class="dv">1</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 3 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>       </span><span style="font-weight: bold;">a</span><span>     </span><span style="font-weight: bold;">b</span><span>
 </span><span style="color: #555555;">#&gt;</span><span>   </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
@@ -463,16 +454,16 @@ PRE.fansi-error,PRE.fansi-warning,PRE.fansi-message {background-color:#DDAAAA;}
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">2</span><span>     2     1
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;">3</span><span>     3     1
 </span></CODE></PRE>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">c =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">c =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
 <PRE class="fansi fansi-error"><CODE><span style="color: #555555;">#&gt;</span><span> Error: Tibble columns must have consistent lengths:
 </span><span style="color: #555555;">#&gt;</span><span> * Length 2: Column `c`
 </span><span style="color: #555555;">#&gt;</span><span> * Length 3: Column `a`
 </span></CODE></PRE>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="kw">integer</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="dv">1</span>, <span class="dt">b =</span> <span class="kw">integer</span>())</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 0 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># … with 2 variables: </span><span style="color: #555555;font-weight: bold;">a</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">b</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span>
 </span></CODE></PRE>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">integer</span>(), <span class="dt">b =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">integer</span>(), <span class="dt">b =</span> <span class="dv">1</span>)</a></code></pre></div>
 <PRE class="fansi fansi-output"><CODE><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># A tibble: 0 x 2</span><span>
 </span><span style="color: #555555;">#&gt;</span><span> </span><span style="color: #555555;"># … with 2 variables: </span><span style="color: #555555;font-weight: bold;">a</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span><span style="color: #555555;">, </span><span style="color: #555555;font-weight: bold;">b</span><span style="color: #555555;"> </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>
 </span></CODE></PRE>
